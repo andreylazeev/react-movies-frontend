@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap');
+
+* {
+  font-family: "Rubik", sans-serif;
+}
+span,li,p,a,h2,h3,h4,h5,h6 {
+  color: white;
+}
+body {
+  background: linear-gradient(180deg, #22232A 0%, #1D1E23 52.08%, #18191D 100%);
+  background-repeat: no-repeat;
+}

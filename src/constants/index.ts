@@ -1,0 +1,1 @@
+export const KP_API = 'https://kinopoiskapiunofficial.tech/api'
