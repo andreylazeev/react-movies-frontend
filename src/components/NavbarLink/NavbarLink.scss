@@ -1,0 +1,69 @@
+@import '../../css/vars';
+
+.NavbarLink {
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
+  position: relative;
+
+  @media screen and (max-width: 960px) {
+    justify-content: center;
+  }
+  @media screen and (max-width: 600px) {
+    justify-content: flex-start;
+  }
+
+  * {
+    transition: all .3s ease-out;
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+    @media screen and (max-width: 960px) {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__Heading {
+    color: #7d8197;
+    @media screen and (max-width: 960px) {
+      display: none;
+    }
+    @media screen and (max-width: 600px) {
+      display: initial;
+    }
+  }
+
+  &:hover {
+    .NavbarLink__Heading {
+      color: white;
+    }
+  }
+
+  &--active {
+    &::before {
+      content: '';
+      position: absolute;
+      left: -15px;
+      width: 6px;
+      height: 6px;
+      border-radius: 100%;
+      background: $red;
+      @media screen and (max-width: 960px) {
+        content: unset;
+      }
+    }
+    .NavbarLink__Heading {
+      color: white;
+    }
+    svg path:last-child {
+      fill: $red;
+    }
+  }
+
+  &:not(:last-of-type) {
+    margin-bottom: 15px;
+  }
+}

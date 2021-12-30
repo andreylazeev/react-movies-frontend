@@ -1,0 +1,46 @@
+@import '../../css/vars';
+
+.Logout {
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
+  position: relative;
+  cursor: pointer;
+
+  @media screen and (max-width: 960px) {
+    justify-content: center;
+  }
+  
+  @media screen and (max-width: 600px) {
+    justify-content: flex-start;
+  }
+
+  * {
+    transition: all 0.3s ease-out;
+  }
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: white;
+    @media screen and (max-width: 960px) {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__Heading {
+    color: #7d8197;
+    @media screen and (max-width: 960px) {
+      display: none;
+    }
+    @media screen and (max-width: 600px) {
+      display: initial;
+    }
+  }
+
+  &:hover {
+    .Logout__Heading {
+      color: white;
+    }
+  }
+}

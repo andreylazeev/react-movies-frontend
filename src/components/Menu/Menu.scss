@@ -1,0 +1,15 @@
+.Menu {
+  &__Heading {
+    font-size: 14px;
+    color: #7d8197;
+    @media screen and (max-width: 960px) {
+      display: none;
+    }
+    @media screen and (max-width: 600px) {
+      display: initial;
+    }
+  }
+  &__Navigation {
+    margin-top: 30px;
+  }
+}
