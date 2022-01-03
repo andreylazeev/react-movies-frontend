@@ -5,3 +5,12 @@ export interface MenuProps {
   link?: string
   onClickEvent? : () => void
 }
+
+export interface SearchResultsCardProps {
+  posterUrlPreview: string
+  genres?: {}[]
+  nameRu?: string
+  nameEn?: string
+  rating?: string
+  [key: string]: any
+}

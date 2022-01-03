@@ -1,0 +1,45 @@
+.Search {
+  position: relative;
+  &__Box {
+    position: relative;
+  }
+
+  &__InputIcon {
+    position: absolute;
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+    left: 15px;
+    path:last-child {
+      fill: #7d8197;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  span {
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
+  &__InputField {
+    height: 50px;
+    width: 300px;
+    padding-left: 45px;
+    outline: none;
+    border: none;
+    color: #7d8197;
+    background: white;
+    border-radius: 25px;
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
+
+    
+
+    &::placeholder {
+      color: #7d8197;
+    }
+  }
+}

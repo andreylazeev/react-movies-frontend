@@ -1,0 +1,9 @@
+.Header {
+  display: flex;
+  padding: 40px 30px;
+  @media screen and (max-width: 600px) {
+    display: block;
+    position: sticky;
+    top: 70px;
+  }
+}

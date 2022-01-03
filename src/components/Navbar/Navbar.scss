@@ -19,8 +19,9 @@
     padding: 20px 15px;
     height: 100%;
     background: #1d1e23;
+    z-index: 999;
     &--hidden {
-      height: 85px;
+      height:  70px;
     }
   }
 
@@ -36,7 +37,7 @@
     background: none;
     border: none;
     svg {
-      width: 40px;height: 40px;
+      width: 30px;height: 30px;
       path:last-child {
         fill: white;
       }
