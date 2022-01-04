@@ -16,6 +16,7 @@ export const useFetch = <T>(url: string, options: object) => {
 
   useEffect(() => {
     fetchData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url])
   return { response, error, fetchData };
 }
