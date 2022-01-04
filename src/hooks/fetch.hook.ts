@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const useFetch = <T>(url: string, options: object) => {
   const [response, setResponse] = useState<T | any>(null);
@@ -13,5 +13,9 @@ export const useFetch = <T>(url: string, options: object) => {
       setError(error);
     }
   };
+
+  useEffect(() => {
+    fetchData()
+  }, [url])
   return { response, error, fetchData };
 }

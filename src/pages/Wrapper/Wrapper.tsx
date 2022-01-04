@@ -11,7 +11,7 @@ export const Wrapper: FC = () => {
       <div className='Wrapper__Content'>
         <Header />
         <Routes>
-          <Route path='/' element={<p>{String(window.navigator.onLine)}</p>} />
+          <Route path='/' element={<p>111</p>} />
           <Route path='/favorites' element={<p>favs</p>} />
         </Routes>
       </div>

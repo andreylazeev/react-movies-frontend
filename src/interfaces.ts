@@ -12,5 +12,6 @@ export interface SearchResultsCardProps {
   nameRu?: string
   nameEn?: string
   rating?: string
+  filmId: number,
   [key: string]: any
 }

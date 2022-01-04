@@ -1,0 +1,27 @@
+.SearchResults {
+  &__Card {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 15px;
+  }
+
+  &__Title, &__Genres {
+    color: black;
+  }
+
+  &__Genres {
+    opacity: .5;
+    font-size: 14px;
+  }
+
+  &__Image {
+    width: 70px;
+    img {
+      border-radius: 3px;
+      box-shadow: 0 5px 10px rgba(0,0,0,.2);
+      width: 100%;
+      height: auto;
+    }
+  }
+}
