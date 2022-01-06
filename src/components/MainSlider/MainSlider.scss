@@ -1,7 +1,10 @@
 .MainSlider {
   border-radius: 6px;
+  grid-column: 1/-1;
+  width: 100%;
   .swiper-slide {
     height: 600px;
+    transition: all 1.5s ease-out;
 
     @media screen and (max-width: 960px) {
       height: 500px;
@@ -9,6 +12,10 @@
 
     @media screen and (max-width: 600px) {
       height: 300px;
+    }
+
+    &-prev, &-next {
+      opacity: .1;
     }
   }
 

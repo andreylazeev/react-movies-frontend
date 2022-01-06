@@ -5,4 +5,10 @@
     margin-left: 15px;
     margin-right: 15px;
   }
+
+  &__Slider {
+    display: grid;
+    overflow-x: hidden;
+    grid-template-columns: repeat(12,1fr);
+  }
 }

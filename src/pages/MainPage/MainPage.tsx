@@ -6,7 +6,9 @@ import './MainPage.scss'
 export const MainPage: FC = () => {
   return (
     <div className='MainPage'>
-      <MainSlider />
+      <div className="MainPage__Slider">
+        <MainSlider />
+      </div>
     </div>
   )
 }
