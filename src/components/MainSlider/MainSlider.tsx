@@ -10,9 +10,6 @@ import { MainSlide } from '../MainSlide/MainSlide'
 
 SwiperCore.use([Navigation])
 
-interface Dic {
-  [key: string | number]: string
-}
 export const MainSlider = () => {
   const { response } = useFetch<MovieProps>(
     KP_API + '/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1',
