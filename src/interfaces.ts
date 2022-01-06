@@ -6,7 +6,7 @@ export interface MenuProps {
   onClickEvent? : () => void
 }
 
-export interface SearchResultsCardProps {
+export interface MovieProps {
   posterUrlPreview: string
   genres?: {}[]
   nameRu?: string

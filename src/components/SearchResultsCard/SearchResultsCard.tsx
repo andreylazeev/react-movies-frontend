@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
-import { SearchResultsCardProps } from '../../interfaces'
+import { MovieProps } from '../../interfaces'
 import './SearchResultsCard.scss'
 
-export const SearchResultsCard: FC<SearchResultsCardProps> = ({
+export const SearchResultsCard: FC<MovieProps> = ({
   posterUrlPreview,
   genres,
   nameRu,

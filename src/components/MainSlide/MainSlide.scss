@@ -1,0 +1,53 @@
+@import '../../css/vars';
+
+.MainSlide {
+  height: 100%;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  display: grid;
+  grid-row-gap: 15px;
+  align-content: flex-end;
+  padding: 50px 80px;
+  @media screen and (max-width: 600px) {
+    padding: 20px 50px;
+  }
+  &__Info {
+    display: grid;
+    gap: 15px;
+    @media screen and (max-width: 600px) {
+      grid-template-columns: auto 1fr;
+    }
+  }
+  &__Title {
+    font-size: 36px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    &:hover {
+      color: $red;
+    }
+    @media screen and (max-width: 600px) {
+      font-size: 20px;
+    }
+  }
+  &__Poster {
+    width: 150px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 4px;
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
+  }
+
+  &__Rating {
+    font-size: 24px;
+    font-weight: 600;
+    position: absolute;
+    left: 80px;
+    top: 50px;
+    @media screen and (max-width: 600px) {
+      top: 20px; left: 50px;
+    }
+  }
+}
