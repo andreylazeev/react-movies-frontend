@@ -14,5 +14,5 @@ export interface MovieProps {
   nameEn?: string
   rating?: string
   filmId: number,
-  [key: string]: unknown
+  [key: string]: any
 }

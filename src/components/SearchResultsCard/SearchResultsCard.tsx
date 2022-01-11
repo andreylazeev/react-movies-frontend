@@ -9,9 +9,10 @@ export const SearchResultsCard: FC<MovieProps> = ({
   nameRu,
   nameEn,
   filmId,
+  onClick,
   rating
 }) => {
-  return <Link to={`/watch/${filmId}`} className='SearchResults__Card'>
+  return <Link to={`/watch/${filmId}`} onClick={onClick} className='SearchResults__Card'>
     <div className="SearchResults__Image">
       <img src={posterUrlPreview} alt={nameEn} />
     </div>

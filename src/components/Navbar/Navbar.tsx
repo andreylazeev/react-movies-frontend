@@ -28,9 +28,9 @@ export const Navbar: FC = () => {
           <NavbarLink heading='Избранное' link='/favorites' onClickEvent={toggleVisible}>
             <RiHeart2Fill />
           </NavbarLink>
-          <NavbarLink heading='Топ' link='/top' onClickEvent={toggleVisible}>
+          {/* <NavbarLink heading='Топ' link='/top' onClickEvent={toggleVisible}>
             <RiFireFill />
-          </NavbarLink>
+          </NavbarLink> */}
         </Menu>
         <Menu heading='Настройки'>
           <LogoutButton onClickEvent={toggleVisible}/>
