@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 export interface MenuProps {
   heading: string
   children: ReactNode
@@ -13,5 +14,5 @@ export interface MovieProps {
   nameEn?: string
   rating?: string
   filmId: number,
-  [key: string]: any
+  [key: string]: unknown
 }

@@ -20,7 +20,7 @@ export const MainSlider = () => {
       {response &&
         response.films
           .slice(0, 5)
-          .map((film: any) => <SwiperSlide key={film.filmId}>
+          .map((film: MovieProps) => <SwiperSlide key={film.filmId}>
             <MainSlide {...film}/>
           </SwiperSlide>)}
     </Swiper>

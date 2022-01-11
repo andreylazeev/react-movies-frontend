@@ -14,7 +14,7 @@ export const SearchResults: FC<SearchResultsProps> = ({ query }) => {
   // const [isVisible, setIsVisible] = useState(false)
   return <div className='SearchResults'>
     {response &&
-      response.films.slice(0,5).map((film: any) => <SearchResultsCard key={film.filmId} {...film} />)
+      response.films.slice(0,5).map((film: MovieProps) => <SearchResultsCard key={film.filmId} {...film} />)
     }
   </div>
 }
