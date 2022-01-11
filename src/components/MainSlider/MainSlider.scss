@@ -4,7 +4,7 @@
   width: 100%;
   .swiper-slide {
     height: 600px;
-    transition: all 1.5s ease-out;
+    transition: opacity 1.5s ease-out;
 
     @media screen and (max-width: 960px) {
       height: 500px;
