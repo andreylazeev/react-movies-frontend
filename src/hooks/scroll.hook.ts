@@ -18,7 +18,7 @@ export default function useScroll(childRef: RefObject<HTMLElement>, callback: ()
         observer.current.observe(childRef.current as HTMLElement)
 
         return function () {
-            observer.current!.unobserve(childRef!.current as Element)
+            observer.current!.disconnect()
         };
     }, [callback])
 };
