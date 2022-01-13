@@ -1,0 +1,36 @@
+@import '../../css/vars';
+
+.Main {
+  &__Categories {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    column-gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+    @media screen and (max-width: 600px) {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 15px;
+      border-radius: 6px;
+      position: absolute;
+      bottom: 10px;
+      background: rgba(0, 0, 0, .6);
+      left: 20px;
+      right: 20px;
+      z-index: 2;
+      backdrop-filter: blur(10px);
+    }
+  }
+
+  &__Category {
+    cursor: pointer;
+    color: white;
+    border: none;
+    background: transparent;
+    padding: 10px 15px;
+    border-radius: 8px;
+
+    &--Active {
+      background: $red;
+    }
+  }
+}

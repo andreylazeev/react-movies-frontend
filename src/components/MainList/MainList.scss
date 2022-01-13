@@ -1,0 +1,8 @@
+.Main {
+  &__Movies {
+    min-height: 1000px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+  }
+}

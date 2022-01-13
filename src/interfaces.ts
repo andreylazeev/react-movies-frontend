@@ -16,3 +16,5 @@ export interface MovieProps {
   filmId: number,
   [key: string]: any
 }
+
+export type Dictionary<T> = {[key: string] : T}

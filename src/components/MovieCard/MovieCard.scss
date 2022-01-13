@@ -1,0 +1,30 @@
+.Movie {
+  &__Card {
+    aspect-ratio: 1 / 1.5;
+    background-size: cover;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    backface-visibility: hidden;
+  }
+
+  &__Title {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px 10px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+  }
+  &__Rating {
+    position: absolute;
+    padding: 5px 10px;
+    left: 10px;
+    top: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 2px;
+  }
+}
