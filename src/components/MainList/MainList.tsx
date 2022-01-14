@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef, useState } from 'react'
-import { KP_API, MAIN_CATEGORIES } from '../../constants'
+import { KP_API, KP_HEADERS, MAIN_CATEGORIES } from '../../constants'
 import { useFetch } from '../../hooks/fetch.hook'
 import useScroll from '../../hooks/scroll.hook'
 import { Dictionary } from '../../interfaces'
@@ -13,10 +13,7 @@ export const MainList: FC = () => {
   const defaultUrl = MAIN_CATEGORIES[0].url
   const [result, setResult] = useState<Dictionary<any>>([])
   const { response } = useFetch(`${KP_API}${defaultUrl}&page=1`, {
-    headers: {
-      'X-API-KEY': process.env.REACT_APP_API_KP || '',
-      'Content-Type': 'application/json'
-    }
+    headers: KP_HEADERS
   })
   const ref = useRef<HTMLDivElement | null>(null)
   const mainRef = useRef<HTMLDivElement | null>(null)
@@ -24,10 +21,7 @@ export const MainList: FC = () => {
   const handleIntersection = () => {
     if (currentPage < response.pagesCount) {
       fetch(`${KP_API}${url}&page=${currentPage}`, {
-        headers: {
-          'X-API-KEY': process.env.REACT_APP_API_KP || '',
-          'Content-Type': 'application/json'
-        }
+        headers: KP_HEADERS
       }).then(res => res.json()).then(json => {
         setResult((prev: any) => [...prev, ...json.films])
         setCurrentPage(prev => prev + 1)
@@ -44,10 +38,7 @@ export const MainList: FC = () => {
     setCurrentCategory(id)
     setCurrentPage(1)
     fetch(`${KP_API}${url}&page=1`, {
-      headers: {
-        'X-API-KEY': process.env.REACT_APP_API_KP || '',
-        'Content-Type': 'application/json'
-      }
+      headers: KP_HEADERS
     }).then(res => res.json()).then(json => {
       setResult(() => [...json.films])
       setCurrentPage(prev => prev + 1)

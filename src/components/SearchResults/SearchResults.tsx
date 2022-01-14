@@ -1,5 +1,5 @@
 import { FC, Ref, forwardRef, useState } from 'react'
-import { KP_API } from '../../constants'
+import { KP_API, KP_HEADERS } from '../../constants'
 import { useFetch } from '../../hooks/fetch.hook'
 import { MovieProps } from '../../interfaces'
 import { SearchResultsCard } from '../SearchResultsCard/SearchResultsCard'
@@ -11,7 +11,7 @@ interface SearchResultsProps {
   [key: string]: any
 }
   export const SearchResults: FC<SearchResultsProps> = forwardRef(({ query, onMovieClick }, ref) => {
-  const {response} = useFetch<MovieProps>(KP_API + '/v2.1/films/search-by-keyword?' + new URLSearchParams({keyword: query}), {headers: {'X-API-KEY' : process.env.REACT_APP_API_KP, 'Content-Type' : 'application/json'}})
+  const {response} = useFetch<MovieProps>(KP_API + '/v2.1/films/search-by-keyword?' + new URLSearchParams({keyword: query}), {headers: KP_HEADERS})
   
   return <div ref={ref} className='SearchResults'>
     {response &&

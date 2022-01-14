@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
+import { KP_HEADERS } from '../../constants'
 import { useFetch } from '../../hooks/fetch.hook'
 import { MovieProps } from '../../interfaces'
 
@@ -16,10 +17,7 @@ export const MainSlide: FC<MovieProps> = ({
   const { response } = useFetch<MovieProps>(
     `https://kinopoiskapiunofficial.tech/api/v2.2/films/${filmId}/images?type=STILL&page=1`,
     {
-      headers: {
-        'X-API-KEY': process.env.REACT_APP_API_KP || '',
-        'Content-Type': 'application/json'
-      }
+      headers: KP_HEADERS
     }
   )
 

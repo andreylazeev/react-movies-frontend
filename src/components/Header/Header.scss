@@ -1,5 +1,7 @@
 .Header {
   display: flex;
+  position: relative;
+  z-index: 5;
   padding: 40px 30px;
   @media screen and (max-width: 600px) {
     display: block;

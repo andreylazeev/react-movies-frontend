@@ -2,7 +2,6 @@
   height: 100vh;
   display: grid;
   grid-template-columns: 2fr 14fr;
-  grid-column-gap: 15px;
   @media screen and (max-width: 960px) {
     grid-template-columns: 1fr 15fr;
   }
@@ -12,7 +11,9 @@
 
   &__Content {
     overflow-x: hidden;
+    padding-left: 15px;
     @media screen and (max-width: 600px) {
+      padding-left: 0;
       margin-top: 70px;
     }
   }

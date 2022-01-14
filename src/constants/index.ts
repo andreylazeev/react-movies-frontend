@@ -1,4 +1,9 @@
 export const KP_API = 'https://kinopoiskapiunofficial.tech/api'
+export const KP_HEADERS = {
+  'X-API-KEY': process.env.REACT_APP_API_KP || '',
+  'Content-Type': 'application/json'
+}
+export const CDN_API = 'https://videocdn.tv/api/short'
 export const MAIN_CATEGORIES = [
   {
     id: 1,
