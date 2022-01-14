@@ -13,7 +13,7 @@ export const MovieHeader: FC<MovieProps> = ({filmId, nameRu, nameEn, nameOrigina
   )
   if (response) {
     return (
-      <div className='MoviePage__Header' style={{background: response.items.length ? `url(${response.items[0].imageUrl})` : 'black'}}>
+      <div className='MoviePage__Header' style={{background: response.items.length ? `url(${response.items[Math.floor(Math.random()*response.items.length)].imageUrl})` : 'black'}}>
         <div className="MoviePage__Info">
           <img src={posterUrlPreview} className='MoviePage__Poster' alt={nameRu || nameEn} />
           <h2 className='MoviePage__Title'>{nameRu || nameEn || nameOriginal}</h2>

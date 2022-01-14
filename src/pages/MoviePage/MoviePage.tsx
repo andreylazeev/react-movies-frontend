@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { useParams } from 'react-router-dom'
 import { MovieDetails } from '../../components/MovieDetails/MovieDetails'
 import { MovieHeader } from '../../components/MovieHeader/MovieHeader'
+import { MoviePlayer } from '../../components/MoviePlayer/MoviePlayer'
 import { KP_API, KP_HEADERS } from '../../constants'
 import { useFetch } from '../../hooks/fetch.hook'
 import './MoviePage.scss'
@@ -17,6 +18,9 @@ export const MoviePage: FC = () => {
       <MovieHeader filmId={id} {...response}/>
       <div className="MoviePage__Content">
         <MovieDetails {...response}/>
+      </div>
+      <div className="MoviePage__Player">
+        {id && <MoviePlayer id={id} />}
       </div>
     </div>
   )

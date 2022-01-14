@@ -1,3 +1,4 @@
+@import '../../css/vars';
 .Movie {
   &__Card {
     aspect-ratio: 1 / 1.5;
@@ -6,6 +7,20 @@
     position: relative;
     overflow: hidden;
     backface-visibility: hidden;
+  }
+
+  &__Progress {
+    position: absolute;
+    bottom: 0;
+    height: 5px;
+    width: 100%;
+    &--Line {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background: $blue;
+    }
   }
 
   &__Title {

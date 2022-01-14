@@ -1,12 +1,12 @@
 .Header {
   display: flex;
   position: relative;
-  z-index: 5;
+  z-index: 3;
   padding: 40px 30px;
   @media screen and (max-width: 600px) {
     display: block;
     position: sticky;
-    z-index: 2;
+    z-index: 3;
     top: 0;
   }
 }

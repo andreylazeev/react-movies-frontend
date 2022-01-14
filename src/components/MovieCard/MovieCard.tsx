@@ -4,7 +4,7 @@ import { MovieProps } from '../../interfaces'
 import './MovieCard.scss'
 
 export const MovieCard: FC<MovieProps> = memo(
-  ({ filmId, posterUrlPreview, nameRu, nameEn, rating }) => {
+  ({ filmId, posterUrlPreview, nameRu, nameEn, rating, duration }) => {
     return (
       <Link
         to={`/watch/${filmId}`}
@@ -14,6 +14,9 @@ export const MovieCard: FC<MovieProps> = memo(
       >
         <p className='Movie__Rating'>{rating}</p>
         <p className='Movie__Title'>{nameRu || nameEn}</p>
+        <div className="Movie__Progress">
+          <div className="Movie__Progress--Line" style={{width : `${(3600 * 100) / duration}%`}} />
+        </div>
       </Link>
     )
   }

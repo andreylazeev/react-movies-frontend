@@ -1,9 +1,10 @@
 import { FC } from 'react'
 import { Dictionary, MovieProps } from '../../interfaces'
+import './MovieDetails.scss'
 
 export const MovieDetails: FC<MovieProps> = ({description, genres, ratingImdb, ratingKinopoisk, ratingMpaa}) => {
   return (
-    <div className='MoviePage__Details'>
+    <div className={`MoviePage__Details ${!description ? 'MoviePage__Details--Single' : ''}`}>
       <p className="MoviePage__Description">
         {description}
       </p>

@@ -50,7 +50,7 @@
       width: 6px;
       height: 6px;
       border-radius: 100%;
-      background: $red;
+      background: $blue;
       @media screen and (max-width: 960px) {
         content: unset;
       }
@@ -59,7 +59,7 @@
       color: white;
     }
     svg path:last-child {
-      fill: $red;
+      fill: $blue;
     }
   }
 

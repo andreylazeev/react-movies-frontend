@@ -3,7 +3,7 @@ export const KP_HEADERS = {
   'X-API-KEY': process.env.REACT_APP_API_KP || '',
   'Content-Type': 'application/json'
 }
-export const CDN_API = 'https://videocdn.tv/api/short'
+export const CDN_API = `https://videocdn.tv/api/short?api_token=${process.env.REACT_APP_API_CDN || ''}`
 export const MAIN_CATEGORIES = [
   {
     id: 1,

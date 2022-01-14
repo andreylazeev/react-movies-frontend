@@ -1,5 +1,6 @@
 import { FC, useEffect, useRef, useState } from 'react'
 import { KP_API, KP_HEADERS, MAIN_CATEGORIES } from '../../constants'
+import { MovieController } from '../../helpers'
 import { useFetch } from '../../hooks/fetch.hook'
 import useScroll from '../../hooks/scroll.hook'
 import { Dictionary } from '../../interfaces'
@@ -18,6 +19,9 @@ export const MainList: FC = () => {
   const ref = useRef<HTMLDivElement | null>(null)
   const mainRef = useRef<HTMLDivElement | null>(null)
   const url = MAIN_CATEGORIES.find(category => category.id === currentCategory)!.url
+
+  const movie = new MovieController()
+
   const handleIntersection = () => {
     if (response && currentPage < response.pagesCount) {
       fetch(`${KP_API}${url}&page=${currentPage}`, {
@@ -61,7 +65,7 @@ export const MainList: FC = () => {
         current={currentCategory}
       />
       <div className="Main__Movies">
-        {result && result.map((film: Dictionary<any>) => <MovieCard filmId={film.filmId} posterUrlPreview={film.posterUrlPreview} key={film.filmId} rating={film.rating} nameRu={film.nameRu || ''} nameEn={film.nameEn || ''}/>)}
+        {result && result.map((film: Dictionary<any>) => <MovieCard duration={film.filmLength ? movie.getTime(film.filmLength) : 0} filmId={film.filmId} posterUrlPreview={film.posterUrlPreview} key={film.filmId} rating={film.rating} nameRu={film.nameRu || ''} nameEn={film.nameEn || ''}/>)}
       </div>
       <div ref={ref} style={{color: 'transparent'}}>123</div>
     </div>
