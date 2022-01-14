@@ -32,6 +32,8 @@ export const MainList: FC = () => {
       })
     }
   }
+
+  // eslint-disable-next-line
   const intersected = useScroll(ref, handleIntersection)
 
   const handleCategoryClick = (id: number) => {
