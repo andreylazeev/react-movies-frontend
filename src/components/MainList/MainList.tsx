@@ -19,7 +19,7 @@ export const MainList: FC = () => {
   const mainRef = useRef<HTMLDivElement | null>(null)
   const url = MAIN_CATEGORIES.find(category => category.id === currentCategory)!.url
   const handleIntersection = () => {
-    if (currentPage < response.pagesCount) {
+    if (response && currentPage < response.pagesCount) {
       fetch(`${KP_API}${url}&page=${currentPage}`, {
         headers: KP_HEADERS
       }).then(res => res.json()).then(json => {
