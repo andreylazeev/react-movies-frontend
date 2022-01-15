@@ -5,11 +5,10 @@ import './Wrapper.scss'
 import { Header } from '../../components/Header/Header'
 import { MainPage } from '../MainPage/MainPage'
 import { MoviePage } from '../MoviePage/MoviePage'
-
 export const Wrapper: FC = () => {
   return (
     <div className='Wrapper'>
-        <Navbar />
+      <Navbar />
       <div className='Wrapper__Content'>
         <Header />
         <Routes>

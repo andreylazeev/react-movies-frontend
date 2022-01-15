@@ -3,29 +3,28 @@
   top: -130px;
   bottom: 0;
   height: calc(100% + 130px);
-  
-  
+
   &__Content {
     padding: 25px 15px;
   }
-  
+
   &__Description {
     font-size: 18px;
     line-height: 150%;
   }
-  
+
   &__AdditionalInfo {
     display: grid;
     align-content: center;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
   }
-  
+
   &__Player {
-    margin-bottom: 25px;
     iframe {
       width: calc(100% - 15px);
       aspect-ratio: 16/9;
+      margin-bottom: 25px;
     }
     @media screen and (max-width: 600px) {
       margin-left: 15px;

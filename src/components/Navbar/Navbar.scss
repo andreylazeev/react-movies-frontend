@@ -1,9 +1,11 @@
+@import '../../css/vars';
+
 .Navbar {
   padding: 50px 40px;
   border-right: 1px solid rgba(211, 211, 211, 0.075);
   display: grid;
   grid-row-gap: 50px;
-  grid-auto-rows: max-content;
+  grid-template-rows: auto auto 1fr;
   transition: all 0.3s ease-out;
 
   @media screen and (max-width: 960px) {
@@ -50,5 +52,19 @@
   &__Menus {
     display: grid;
     grid-row-gap: 60px;
+  }
+  
+  &__Login {
+    color: white;
+    background: $blue;
+    border: 0;
+    padding: 10px;
+    border-radius: 4px;
+    align-self: flex-end;
+    cursor: pointer;
+
+    &:hover {
+      background: darken($color: $blue, $amount: 10);
+    }
   }
 }

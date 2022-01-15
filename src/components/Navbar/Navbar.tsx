@@ -6,11 +6,18 @@ import { RiCompass4Fill, RiHeart2Fill, RiFireFill } from 'react-icons/ri'
 import './Navbar.scss'
 import { LogoutButton } from '../LogoutButton/LogoutButton'
 import { RiMenuLine } from "react-icons/ri"
+import { useRecoilState } from 'recoil'
+import {store} from '../../recoil'
+import { AuthModal } from '../AuthModal/AuthModal'
 
 export const Navbar: FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false)
+  const [state, setState] = useRecoilState(store)
   const toggleVisible = () => {
     setIsVisible(!isVisible)
+  }
+  const toggleModal = () => {
+    setState((prev) => ({...prev, isModalVisible: !prev.isModalVisible}))
   }
   return (
     <div className={`Navbar ${!isVisible ? 'Navbar--hidden' : ''}`}>
@@ -21,6 +28,7 @@ export const Navbar: FC = () => {
         <Logo />
       </div>
       <div className='Navbar__Menus'>
+        {state.isModalVisible && <AuthModal />}
         <Menu heading='Главная'>
           <NavbarLink heading='Обзор' link='/' onClickEvent={toggleVisible}>
             <RiCompass4Fill />
@@ -36,6 +44,7 @@ export const Navbar: FC = () => {
           <LogoutButton onClickEvent={toggleVisible}/>
         </Menu>
       </div>
+      <button onClick={toggleModal} className="Navbar__Login">Вход/Регистрация</button>
     </div>
   )
 }
