@@ -16,3 +16,5 @@ export const MAIN_CATEGORIES = [
     url: '/v2.2/films/top?type=TOP_250_BEST_FILMS'
   }
 ]
+
+export const MAIN_API = process.env.REACT_APP_MAIN_API || ''

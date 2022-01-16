@@ -16,6 +16,11 @@ export const Navbar: FC = () => {
   const toggleVisible = () => {
     setIsVisible(!isVisible)
   }
+  const logout = () => {
+    localStorage.removeItem('user')
+    setState(prev => ({...prev, isAuth: false, userData: {}}))
+    setIsVisible(!isVisible)
+  }
   const toggleModal = () => {
     setState((prev) => ({...prev, isModalVisible: !prev.isModalVisible}))
   }
@@ -40,11 +45,11 @@ export const Navbar: FC = () => {
             <RiFireFill />
           </NavbarLink> */}
         </Menu>
-        <Menu heading='Настройки'>
-          <LogoutButton onClickEvent={toggleVisible}/>
-        </Menu>
+        {state.isAuth && <Menu heading='Настройки'>
+          <LogoutButton onClickEvent={logout}/>
+        </Menu>}
       </div>
-      <button onClick={toggleModal} className="Navbar__Login">Вход/Регистрация</button>
+      {!state.isAuth && <button onClick={toggleModal} className="Navbar__Login">Вход/Регистрация</button>}
     </div>
   )
 }
