@@ -2,7 +2,7 @@ import { FC, useState } from 'react'
 import { Logo } from '../Logo/Logo'
 import { Menu } from '../Menu/Menu'
 import { NavbarLink } from '../NavbarLink/NavbarLink'
-import { RiCompass4Fill, RiHeart2Fill, RiFireFill } from 'react-icons/ri'
+import { RiCompass4Fill, RiHeart2Fill } from 'react-icons/ri'
 import './Navbar.scss'
 import { LogoutButton } from '../LogoutButton/LogoutButton'
 import { RiMenuLine } from "react-icons/ri"
@@ -41,9 +41,6 @@ export const Navbar: FC = () => {
           <NavbarLink heading='Избранное' link='/favorites' onClickEvent={toggleVisible}>
             <RiHeart2Fill />
           </NavbarLink>
-          {/* <NavbarLink heading='Топ' link='/top' onClickEvent={toggleVisible}>
-            <RiFireFill />
-          </NavbarLink> */}
         </Menu>
         {state.isAuth && <Menu heading='Настройки'>
           <LogoutButton onClickEvent={logout}/>

@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent, KeyboardEventHandler, useEffect, useRef, useState } from 'react'
+import { FC, KeyboardEvent,  useEffect, useRef, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { MAIN_API } from '../../constants'
 import { useInput } from '../../hooks/input.hook'
