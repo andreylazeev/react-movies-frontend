@@ -1,10 +1,69 @@
+@import '../../css/vars';
+
 .AuthModal {
   position: fixed;
-  width: 500px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(6px);
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
   z-index: 999999;
+
+  &__Wrap {
+    position: fixed;
+    width: 500px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    top: 50%;
+    left: 50%;
+    padding: 10px;
+    transform: translate3d(-50%, -50%, 0);
+    border-radius: 6px;
+  }
+
+  &__Tabs {
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  &__Tab {
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.6);
+    &--Active {
+      color: white;
+    }
+  }
+
+  &__Inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 10px;
+    margin-bottom: 20px;
+  }
+  &__Input {
+    padding-left: 10px;
+    height: 30px;
+    outline: 0;
+  }
+
+  &__Button {
+    display: flex;
+    justify-content: center;
+    button {
+      color: white;
+      background: $blue;
+      border: 0;
+      padding: 10px;
+      border-radius: 4px;
+      align-self: flex-end;
+      cursor: pointer;
+
+      &:hover {
+        background: darken($color: $blue, $amount: 10);
+      }
+    }
+  }
 }
