@@ -9,6 +9,7 @@ import { RiMenuLine } from "react-icons/ri"
 import { useRecoilState } from 'recoil'
 import {store} from '../../recoil'
 import { AuthModal } from '../AuthModal/AuthModal'
+import { UserInfo } from '../UserInfo/UserInfo'
 
 export const Navbar: FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false)
@@ -50,6 +51,7 @@ export const Navbar: FC = () => {
         </Menu>}
       </div>
       {!state.isAuth && <button onClick={toggleModal} className="Navbar__Login">Вход/Регистрация</button>}
+      {state.isAuth && state.userData.id && <UserInfo />}
     </div>
   )
 }
