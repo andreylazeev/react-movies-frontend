@@ -8,7 +8,7 @@ import './AuthModal.scss'
 
 export const AuthModal: FC = () => {
   const [state, setState] = useRecoilState(store)
-  const [currentTab, setCurrentTab] = useState(0)
+  const [currentTab, setCurrentTab] = useState('login')
   const ref = useRef<HTMLDivElement>(null)
   const username = useInput('')
   const password = useInput('')
@@ -19,7 +19,7 @@ export const AuthModal: FC = () => {
     }
   }
 
-  const switchTabs = (value: number) => {
+  const switchTabs = (value: string) => {
     setCurrentTab(value)
   }
 
@@ -29,9 +29,8 @@ export const AuthModal: FC = () => {
     }
   }
 
-  const handleClick = async (type: number) => {
-    const query = type === 0 ? '/auth/login' : '/auth/registration'
-    await fetch(MAIN_API + query, {
+  const handleClick = async (type: string) => {
+    await fetch(MAIN_API + `/auth/${type}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -49,13 +48,13 @@ export const AuthModal: FC = () => {
         }
       })
       .then((json) => {
-        if (type === 0) {
+        if (type === 'login') {
           setState((prev) => ({ ...prev, isAuth: true, isModalVisible: false }))
           localStorage.setItem('user', JSON.stringify(json))
         }
-        if (type === 1) {
+        if (type === 'registration') {
           setState((prev) => ({ ...prev, isAuth: true, isModalVisible: false }))
-          handleClick(0)
+          handleClick('login')
         }
       }).catch((e: any) => {
         console.log(e);
@@ -75,14 +74,14 @@ export const AuthModal: FC = () => {
       <div className='AuthModal__Wrap' ref={ref}>
         <div className='AuthModal__Tabs'>
           <div
-            className={`AuthModal__Tab ${currentTab === 0 ? 'AuthModal__Tab--Active' : ''}`}
-            onClick={() => switchTabs(0)}
+            className={`AuthModal__Tab ${currentTab === 'login' ? 'AuthModal__Tab--Active' : ''}`}
+            onClick={() => switchTabs('login')}
           >
             Вход
           </div>
           <div
-            className={`AuthModal__Tab ${currentTab === 1 ? 'AuthModal__Tab--Active' : ''}`}
-            onClick={() => switchTabs(1)}
+            className={`AuthModal__Tab ${currentTab === 'registration' ? 'AuthModal__Tab--Active' : ''}`}
+            onClick={() => switchTabs('registration')}
           >
             Регистрация
           </div>
@@ -98,7 +97,7 @@ export const AuthModal: FC = () => {
         </div>
         <div className='AuthModal__Button'>
           <button className='Navbar__Login' onClick={() => handleClick(currentTab)}>
-            {currentTab === 0 ? 'Вход' : 'Регистрация'}
+            {currentTab === 'login' ? 'Вход' : 'Регистрация'}
           </button>
         </div>
       </div>
