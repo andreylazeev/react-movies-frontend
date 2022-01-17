@@ -2,7 +2,7 @@ import { FC, useState } from 'react'
 import { Logo } from '../Logo/Logo'
 import { Menu } from '../Menu/Menu'
 import { NavbarLink } from '../NavbarLink/NavbarLink'
-import { RiCompass4Fill, RiHeart2Fill } from 'react-icons/ri'
+import { RiCompass4Fill, RiHeart2Fill,RiHistoryFill } from 'react-icons/ri'
 import './Navbar.scss'
 import { LogoutButton } from '../LogoutButton/LogoutButton'
 import { RiMenuLine } from "react-icons/ri"
@@ -17,7 +17,7 @@ export const Navbar: FC = () => {
     setIsVisible(!isVisible)
   }
   const logout = () => {
-    localStorage.removeItem('user')
+    localStorage.removeItem('token')
     setState(prev => ({...prev, isAuth: false, userData: {}}))
     setIsVisible(!isVisible)
   }
@@ -40,6 +40,9 @@ export const Navbar: FC = () => {
           </NavbarLink>
           <NavbarLink heading='Избранное' link='/favorites' onClickEvent={toggleVisible}>
             <RiHeart2Fill />
+          </NavbarLink>
+          <NavbarLink heading='История' link='/history' onClickEvent={toggleVisible}>
+            <RiHistoryFill />
           </NavbarLink>
         </Menu>
         {state.isAuth && <Menu heading='Настройки'>

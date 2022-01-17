@@ -16,17 +16,40 @@ export const MoviePlayer:FC<{id: string}> = ({id}) => {
     }
   }, [response])
 
+  const throttle = (fn: Function, wait: number = 300) => {
+    let inThrottle: boolean,
+      lastFn: ReturnType<typeof setTimeout>,
+      lastTime: number;
+    return function (this: any) {
+      const context = this,
+        args = arguments;
+      if (!inThrottle) {
+        fn.apply(context, args);
+        lastTime = Date.now();
+        inThrottle = true;
+      } else {
+        clearTimeout(lastFn);
+        lastFn = setTimeout(() => {
+          if (Date.now() - lastTime >= wait) {
+            fn.apply(context, args);
+            lastTime = Date.now();
+          }
+        }, Math.max(wait - (Date.now() - lastTime), 0));
+      }
+    };
+  };
+
   useEffect(() => {
     if(iframeRef.current) {
       const ref: any = iframeRef.current
       const iframe =ref
       const origin = iframe.src.split('/', 3).join('/');
-      window.addEventListener('message', function(e){
+      window.addEventListener('message', throttle(function(e: MessageEvent){
         if (e.origin === origin && e.data.time && e.data.duration){
           console.log('прошло', e.data.time);
           console.log('длительность',e.data.duration);
         }
-      });
+      }, 5000));
     }
   }, [data])
 

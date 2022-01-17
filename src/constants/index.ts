@@ -18,3 +18,4 @@ export const MAIN_CATEGORIES = [
 ]
 
 export const MAIN_API = process.env.REACT_APP_MAIN_API || ''
+export const MAIN_TOKEN = localStorage.getItem('token') || ''

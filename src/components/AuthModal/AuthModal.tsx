@@ -1,6 +1,7 @@
 import { FC, KeyboardEvent,  useEffect, useRef, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { MAIN_API } from '../../constants'
+import { UserController } from '../../controllers/user.controller'
 import { useInput } from '../../hooks/input.hook'
 import { store } from '../../recoil'
 
@@ -47,10 +48,15 @@ export const AuthModal: FC = () => {
           throw Error(res.statusText);
         }
       })
-      .then((json) => {
+      .then(async (json) => {
         if (type === 'login') {
+          const user = new UserController()
           setState((prev) => ({ ...prev, isAuth: true, isModalVisible: false }))
-          localStorage.setItem('user', JSON.stringify(json))
+          localStorage.setItem('token', JSON.stringify(json.token))
+          user.getUserData(JSON.parse(localStorage.getItem('token')!), (json: any) => {
+            setState(prev => ({...prev, userData: json}))
+          });
+          
         }
         if (type === 'registration') {
           setState((prev) => ({ ...prev, isAuth: true, isModalVisible: false }))
@@ -58,7 +64,6 @@ export const AuthModal: FC = () => {
         }
       }).catch((e: any) => {
         console.log(e);
-        
       })
   }
 
