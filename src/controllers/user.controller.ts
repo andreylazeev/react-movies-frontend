@@ -2,7 +2,6 @@ import { MAIN_API } from '../constants';
 
 export class UserController {
   async getUserData (token: string, callback?: (json: any) => void) {
-    let res = {}
     await fetch(MAIN_API + `/api/movies`, {
       method: 'GET',
       headers: {
