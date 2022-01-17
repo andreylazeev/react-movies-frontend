@@ -1,10 +1,10 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import { KP_HEADERS } from '../../constants'
 import { useFetch } from '../../hooks/fetch.hook'
 import { MovieProps } from '../../interfaces'
 import './MovieHeader.scss'
 
-export const MovieHeader: FC<MovieProps> = ({filmId, nameRu, nameEn, nameOriginal, posterUrlPreview}) => {
+export const MovieHeader: FC<MovieProps> = memo(({filmId, nameRu, nameEn, nameOriginal, posterUrlPreview}) => {
   const { response } = useFetch<MovieProps>(
     `https://kinopoiskapiunofficial.tech/api/v2.2/films/${filmId}/images?type=STILL&page=1`,
     {
@@ -24,3 +24,4 @@ export const MovieHeader: FC<MovieProps> = ({filmId, nameRu, nameEn, nameOrigina
 
   else return <div></div>
 }
+)

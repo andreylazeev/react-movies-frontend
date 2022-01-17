@@ -1,0 +1,21 @@
+@import '../../css/vars';
+
+.FavoriteButton {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+
+  button {
+    color: white;
+    background: $blue;
+    border: 0;
+    padding: 10px;
+    border-radius: 4px;
+    align-self: flex-end;
+    cursor: pointer;
+
+    &:hover {
+      background: darken($color: $blue, $amount: 10);
+    }
+  }
+}

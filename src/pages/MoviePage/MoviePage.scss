@@ -15,7 +15,7 @@
 
   &__AdditionalInfo {
     display: grid;
-    align-content: center;
+    align-items: center;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
   }

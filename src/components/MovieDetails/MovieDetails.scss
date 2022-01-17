@@ -12,6 +12,10 @@
     }
   }
 
+  &__AdditionalInfo {
+    align-items: center;
+  }
+
   &__AdditionalBlock {
     display: flex;
     flex-direction: column;

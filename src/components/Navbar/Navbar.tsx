@@ -3,13 +3,13 @@ import { Logo } from '../Logo/Logo'
 import { Menu } from '../Menu/Menu'
 import { NavbarLink } from '../NavbarLink/NavbarLink'
 import { RiCompass4Fill, RiHeart2Fill,RiHistoryFill } from 'react-icons/ri'
-import './Navbar.scss'
 import { LogoutButton } from '../LogoutButton/LogoutButton'
 import { RiMenuLine } from "react-icons/ri"
 import { useRecoilState } from 'recoil'
 import {store} from '../../recoil'
 import { AuthModal } from '../AuthModal/AuthModal'
 import { UserInfo } from '../UserInfo/UserInfo'
+import './Navbar.scss'
 
 export const Navbar: FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false)

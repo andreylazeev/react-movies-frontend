@@ -29,7 +29,7 @@ export const Search: FC = () => {
   }, [debounced])
   return (
     <div className='Search'>
-      <div className="Search__InputBox">
+      <div className="Search__Box">
       <input type="text" placeholder='Поиск' className='Search__InputField' {...value}/>
       <RiSearch2Line className='Search__InputIcon'/>
       </div>
