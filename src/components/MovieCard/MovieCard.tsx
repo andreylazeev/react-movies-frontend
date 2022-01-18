@@ -12,7 +12,7 @@ export const MovieCard: FC<MovieProps> = memo(
     const [length, setLength] = useState(0)
     useEffect(() => {
       if (state) {
-        const candidate = state.userData.movies.find((el: Dictionary<any>) => el.filmId === filmId)
+        const candidate = state.userData?.movies?.find((el: Dictionary<any>) => el.filmId === filmId)
         if (!!candidate) {
           setViewed(candidate.viewedLength)
           setLength(candidate.filmLength)
@@ -28,7 +28,7 @@ export const MovieCard: FC<MovieProps> = memo(
       >
         <p className='Movie__Rating'>{rating}</p>
         <p className='Movie__Title'>{nameRu || nameEn}</p>
-        {viewed > 0 && (
+        {state.isAuth && viewed > 0 && (
           <div className='Movie__Progress'>
             <div
               className='Movie__Progress--Line'

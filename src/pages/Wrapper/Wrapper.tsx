@@ -27,8 +27,8 @@ export const Wrapper: FC = () => {
         <Header />
         <Routes>
           <Route path='/' element={<MainPage />} />
-          <Route path='/history' element={<p>История</p>} />
-          <Route path='/favorites' element={<p>Избранное</p>} />
+          {state.isAuth && <Route path='/history' element={<p>История</p>} />}
+          {state.isAuth && <Route path='/favorites' element={<p>Избранное</p>} />}
           <Route path='/watch/:id' element={<MoviePage />} />
         </Routes>
       </div>

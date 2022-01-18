@@ -39,12 +39,12 @@ export const Navbar: FC = () => {
           <NavbarLink heading='Обзор' link='/' onClickEvent={toggleVisible}>
             <RiCompass4Fill />
           </NavbarLink>
-          <NavbarLink heading='Избранное' link='/favorites' onClickEvent={toggleVisible}>
+          {state.isAuth && <NavbarLink heading='Избранное' link='/favorites' onClickEvent={toggleVisible}>
             <RiHeart2Fill />
-          </NavbarLink>
-          <NavbarLink heading='История' link='/history' onClickEvent={toggleVisible}>
+          </NavbarLink>}
+          {state.isAuth && <NavbarLink heading='История' link='/history' onClickEvent={toggleVisible}>
             <RiHistoryFill />
-          </NavbarLink>
+          </NavbarLink>}
         </Menu>
         {state.isAuth && <Menu heading='Настройки'>
           <LogoutButton onClickEvent={logout}/>
