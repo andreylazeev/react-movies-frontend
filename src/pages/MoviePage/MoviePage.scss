@@ -1,8 +1,12 @@
 .MoviePage {
   position: relative;
-  top: -130px;
   bottom: 0;
-  height: calc(100% + 130px);
+  // height: calc(100% + 130px);
+
+  &__Wrap {
+    position: relative;
+    top: -130px;
+  }
 
   &__Content {
     padding: 25px 15px;
