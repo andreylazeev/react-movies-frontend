@@ -1,0 +1,29 @@
+.FavoritesPage {
+  margin-left: 30px;
+  margin-right: 45px;
+  @media screen and (max-width: 600px) {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  &__Content {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-auto-rows: max-content;
+    gap: 15px;
+
+    @media screen and (max-width: 1264px) {
+      grid-template-columns: repeat(4,1fr);
+    }
+    @media screen and (max-width: 960px) {
+      grid-template-columns: repeat(3,1fr);
+    }
+    @media screen and (max-width: 600px) {
+      grid-template-columns: repeat(2,1fr);
+    }
+  }
+}

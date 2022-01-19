@@ -18,6 +18,12 @@ export const MoviePage: FC = () => {
 
   const [state, setState] = useRecoilState(store)
 
+  useEffect(() => {
+    if (response) {
+      document.title = response.nameRu || response.nameEn || response.nameOriginal
+    }
+  }, [response])
+
   const ref = useRef<HTMLDivElement>(null)
   return (
     <div className='MoviePage' ref={ref}>
@@ -27,7 +33,7 @@ export const MoviePage: FC = () => {
         <div className='MoviePage__Content'>
           <MovieDetails {...response} />
         </div>
-        <div className='MoviePage__Player'>{id && <MoviePlayer id={id} {...response}/>}</div>
+        {response && <div className='MoviePage__Player'>{id && <MoviePlayer nameEn={response.nameEn} nameRu={response.nameRu} nameOriginal={response.nameEn} year={response.year} filmLength={response.filmLength} id={id} cover={response.posterUrl} coverPreview={response.posterUrlPreview} filmId={response.kinopoiskId}/>}</div>}
       </div>
     </div>
   )

@@ -14,6 +14,7 @@ export const FavoriteButton: FC<Dictionary<any>> = ({ filmId, ...props }) => {
   const [isFavorite, setIsFavorite] = useState(false)
   const handleClick = () => {
     setIsLoading(true)
+    
     const user = new UserController()
     if (!isExists) {
       user.writeMovie(
@@ -21,14 +22,15 @@ export const FavoriteButton: FC<Dictionary<any>> = ({ filmId, ...props }) => {
         {
           filmId: parseInt(filmId),
           ...props,
-          countries: props.countries.map((country: Dictionary<any>) => country.country),
           viewedLength: 0,
           cover: props.posterUrl,
+          isFavorite: true,
           coverPreview: props.posterUrlPreview
         },
-        () => {
-          user.getUserData(JSON.parse(localStorage.getItem('token')!), (json: any) => {
+        async () => {
+          await user.getUserData(JSON.parse(localStorage.getItem('token')!), (json: any) => {
             setState((prev) => ({ ...prev, userData: json }))
+            setIsFavorite(true)
             setIsLoading(false)
           })
         }
@@ -38,8 +40,8 @@ export const FavoriteButton: FC<Dictionary<any>> = ({ filmId, ...props }) => {
       user.updateMovie(
         JSON.parse(localStorage.getItem('token')!),
         { isFavorite: true, id: id },
-        () => {
-          user.getUserData(JSON.parse(localStorage.getItem('token')!), (json: any) => {
+        async () => {
+          await user.getUserData(JSON.parse(localStorage.getItem('token')!), (json: any) => {
             setState((prev) => ({ ...prev, userData: json }))
             setIsLoading(false)
           })
@@ -50,8 +52,8 @@ export const FavoriteButton: FC<Dictionary<any>> = ({ filmId, ...props }) => {
       user.updateMovie(
         JSON.parse(localStorage.getItem('token')!),
         { isFavorite: false, id: id },
-        () => {
-          user.getUserData(JSON.parse(localStorage.getItem('token')!), (json: any) => {
+        async () => {
+          await user.getUserData(JSON.parse(localStorage.getItem('token')!), (json: any) => {
             setState((prev) => ({ ...prev, userData: json }))
             setIsLoading(false)
           })

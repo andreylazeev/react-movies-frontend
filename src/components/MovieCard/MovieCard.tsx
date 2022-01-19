@@ -26,7 +26,7 @@ export const MovieCard: FC<MovieProps> = memo(
         className='Movie__Card'
         title={nameRu || nameEn}
       >
-        <p className='Movie__Rating'>{rating}</p>
+        {rating && <p className='Movie__Rating'>{rating}</p>}
         <p className='Movie__Title'>{nameRu || nameEn}</p>
         {state.isAuth && viewed > 0 && (
           <div className='Movie__Progress'>

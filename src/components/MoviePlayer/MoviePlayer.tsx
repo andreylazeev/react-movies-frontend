@@ -6,98 +6,103 @@ import { io } from 'socket.io-client'
 import { useRecoilState } from 'recoil'
 import { store } from '../../recoil'
 import { UserController } from '../../controllers/user.controller'
+import { useDebounce } from '../../hooks/debounce.hook'
+import { throttle } from '../../helpers'
 
-export const MoviePlayer: FC<{ id: string }> = ({ id, ...filmData }) => {
-  const [data, setData] = useState<Dictionary<any>>({})
-  const [state, setState] = useRecoilState(store)
-  const { response } = useFetch(`${CDN_API}&kinopoisk_id=${id}`, {})
-  const iframeRef = useRef(null)
-  const socketRef = useRef<Dictionary<any> | null>(null)
-
-  useEffect(() => {
-    if (state.isAuth && state.userData.id) {
-      socketRef.current = io(MAIN_API)
-
-      socketRef.current.on('updateData', () => {
-        console.log('update')
-
-        const user = new UserController()
-        user.getUserData(JSON.parse(localStorage.getItem('token')!), (json: any) => {
-          setState((prev) => ({ ...prev, userData: json }))
-        })
-      })
-
-      return () => {
-        socketRef.current!.disconnect()
-      }
-    }
-  }, [state])
-
-  useEffect(() => {
-    if (response) {
-      setData({
-        data: response.data[0] || null
-      })
-    }
-  }, [response])
-
-  const throttle = (fn: Function, wait: number = 300) => {
-    let inThrottle: boolean, lastFn: ReturnType<typeof setTimeout>, lastTime: number
-    return function (this: any) {
-      const context = this,
-        args = arguments
-      if (!inThrottle) {
-        fn.apply(context, args)
-        lastTime = Date.now()
-        inThrottle = true
-      } else {
-        clearTimeout(lastFn)
-        lastFn = setTimeout(() => {
-          if (Date.now() - lastTime >= wait) {
-            fn.apply(context, args)
-            lastTime = Date.now()
-          }
-        }, Math.max(wait - (Date.now() - lastTime), 0))
-      }
-    }
-  }
-
-  useEffect(() => {
-    if (iframeRef.current) {
-      const ref: any = iframeRef.current
-      const iframe = ref
-      const origin = iframe.src.split('/', 3).join('/')
-      const candidate = state.userData?.movies?.find(
-        (el: Dictionary<any>) => el.filmId === parseInt(id)
-      )
-      window.addEventListener(
-        'message',
-        throttle(function (e: MessageEvent) {
-          if (e.origin === origin && e.data.time && e.data.duration && state.userData.id) {
-            socketRef.current?.emit('time', {
-              id: parseInt(id),
-              time: e.data.time,
-              userId: state.userData.id,
-              response: filmData,
-              uniqueId: candidate?.id || ''
-            })
-          }
-        }, 10000)
-      )
-    }
-  }, [data, state])
-
-  return (
-    <div>
-      {data.data && (
-        <iframe
-          ref={iframeRef}
-          title='player'
-          allowFullScreen={true}
-          frameBorder={0}
-          src={data.data.iframe_src}
-        />
-      )}
-    </div>
-  )
+interface FilmProps {
+  id: string
+  filmId: number
+  cover: string
+  coverPreview: string
+  filmLength: number
+  year: number
+  nameRu: string
+  nameEn: string
+  nameOriginal: string
 }
+
+export const MoviePlayer: FC<FilmProps> = memo(
+  ({ id, year, filmId, cover, coverPreview, filmLength, nameRu, nameEn, nameOriginal }) => {
+    const [data, setData] = useState<Dictionary<any>>({})
+    const [state, setState] = useRecoilState(store)
+    const { response } = useFetch(`${CDN_API}&kinopoisk_id=${id}`, {})
+    const [current, setCurrent] = useState(0)
+    const iframeRef = useRef(null)
+    const user = new UserController()
+
+    useEffect(() => {
+      if (response) {
+        setData({
+          data: response.data[0] || null
+        })
+      }
+    }, [response])
+
+    useEffect(() => {
+      if (state.userData.movies) {
+        const candidate = state.userData.movies.some((el: Dictionary<any>) => el.filmId === filmId)
+        if (!candidate) {
+          user.writeMovie(
+            JSON.parse(localStorage.getItem('token')!),
+            {
+              filmId,
+              cover,
+              coverPreview,
+              filmLength: filmLength || 0,
+              isFavorite: false,
+              viewedLength: current,
+              nameEn,
+              nameRu,
+              nameOriginal,
+              year
+            },
+            () => {
+              user.getUserData(JSON.parse(localStorage.getItem('token')!), (json: any) => {
+                setState((prev) => ({ ...prev, userData: json }))
+              })
+            }
+          )
+        }
+      }
+    }, [JSON.stringify(state)])
+
+    useEffect(() => {
+      const handler = throttle(function (e: MessageEvent) {
+        if (e.data.time && e.data.duration) {
+          const candidate = state.userData.movies.find(
+            (el: Dictionary<any>) => el.filmId === filmId
+          )
+          setCurrent(Math.trunc(e.data.time))
+          user.updateMovie(JSON.parse(localStorage.getItem('token')!), {
+            id: candidate.id,
+            viewedLength: parseFloat((e.data.time / 60).toFixed(2))
+          })
+        }
+      }, 15000)
+      window.addEventListener('message', handler)
+      return () => {
+        window.removeEventListener('message', handler)
+      }
+    }, [state])
+
+    return (
+      <div>
+        {data.data && (
+          <iframe
+            ref={iframeRef}
+            title='player'
+            allowFullScreen={true}
+            frameBorder={0}
+            src={
+              data.data.iframe_src +
+              `?start_time=${
+                Math.trunc(state.userData?.movies?.find((el: Dictionary<any>) => el.filmId === filmId)
+                  .viewedLength * 60) || 0
+              }`
+            }
+          />
+        )}
+      </div>
+    )
+  }
+)

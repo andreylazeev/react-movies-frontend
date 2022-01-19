@@ -8,6 +8,8 @@ import { MoviePage } from '../MoviePage/MoviePage'
 import { useRecoilState } from 'recoil'
 import { store } from '../../recoil'
 import { UserController } from '../../controllers/user.controller'
+import { FavoritesPage } from '../FavoritesPage/FavoritesPage'
+import { HistoryPage } from '../HistoryPage/HistoryPage'
 export const Wrapper: FC = () => {
   const [state, setState] = useRecoilState(store)
 
@@ -27,8 +29,8 @@ export const Wrapper: FC = () => {
         <Header />
         <Routes>
           <Route path='/' element={<MainPage />} />
-          {state.isAuth && <Route path='/history' element={<p>История</p>} />}
-          {state.isAuth && <Route path='/favorites' element={<p>Избранное</p>} />}
+          {state.isAuth && <Route path='/history' element={<HistoryPage />} />}
+          {state.isAuth && <Route path='/favorites' element={<FavoritesPage />} />}
           <Route path='/watch/:id' element={<MoviePage />} />
         </Routes>
       </div>
