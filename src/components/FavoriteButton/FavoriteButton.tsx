@@ -4,13 +4,16 @@ import { UserController } from '../../controllers/user.controller'
 import { Dictionary } from '../../interfaces'
 import { store } from '../../recoil'
 import './FavoriteButton.scss'
+import Spinner from '../../assets/spinner.svg'
 
 export const FavoriteButton: FC<Dictionary<any>> = ({ filmId, ...props }) => {
   const [state, setState] = useRecoilState(store)
   const [isExists, setIsExists] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [id, setId] = useState(0)
   const [isFavorite, setIsFavorite] = useState(false)
   const handleClick = () => {
+    setIsLoading(true)
     const user = new UserController()
     if (!isExists) {
       user.writeMovie(
@@ -26,6 +29,7 @@ export const FavoriteButton: FC<Dictionary<any>> = ({ filmId, ...props }) => {
         () => {
           user.getUserData(JSON.parse(localStorage.getItem('token')!), (json: any) => {
             setState((prev) => ({ ...prev, userData: json }))
+            setIsLoading(false)
           })
         }
       )
@@ -37,6 +41,7 @@ export const FavoriteButton: FC<Dictionary<any>> = ({ filmId, ...props }) => {
         () => {
           user.getUserData(JSON.parse(localStorage.getItem('token')!), (json: any) => {
             setState((prev) => ({ ...prev, userData: json }))
+            setIsLoading(false)
           })
         }
       )
@@ -48,6 +53,7 @@ export const FavoriteButton: FC<Dictionary<any>> = ({ filmId, ...props }) => {
         () => {
           user.getUserData(JSON.parse(localStorage.getItem('token')!), (json: any) => {
             setState((prev) => ({ ...prev, userData: json }))
+            setIsLoading(false)
           })
         }
       )
@@ -74,7 +80,8 @@ export const FavoriteButton: FC<Dictionary<any>> = ({ filmId, ...props }) => {
   return (
     <div className='FavoriteButton'>
       <button onClick={handleClick}>
-        {isExists && isFavorite ? 'В избранном' : 'Добавить в избранное'}
+        {!isLoading && (isExists && isFavorite ? 'В избранном' : 'Добавить в избранное')}
+        {isLoading && <img src={Spinner} alt="loading"/>}
       </button>
     </div>
   )
