@@ -25,6 +25,7 @@ export const MoviePlayer: FC<FilmProps> = memo(
   ({ id, year, filmId, cover, coverPreview, filmLength, nameRu, nameEn, nameOriginal }) => {
     const [data, setData] = useState<Dictionary<any>>({})
     const [state, setState] = useRecoilState(store)
+    const [isLoadedUpdate, setIsLoadedUpdate] = useState(true) 
     const { response } = useFetch(`${CDN_API}&kinopoisk_id=${id}`, {})
     const [current, setCurrent] = useState(0)
     const iframeRef = useRef(null)
@@ -68,7 +69,9 @@ export const MoviePlayer: FC<FilmProps> = memo(
 
     useEffect(() => {
       const handler = throttle(function (e: MessageEvent) {
-        if (e.data.time && e.data.duration) {
+        console.log(111);
+        
+        if (e.data.time && e.data.duration && isLoadedUpdate) {
           const candidate = state.userData.movies.find(
             (el: Dictionary<any>) => el.filmId === filmId
           )
@@ -78,12 +81,13 @@ export const MoviePlayer: FC<FilmProps> = memo(
             viewedLength: parseFloat((e.data.time / 60).toFixed(2))
           })
         }
-      }, 15000)
+      }, 10000)
       window.addEventListener('message', handler)
       return () => {
+        setIsLoadedUpdate(false)
         window.removeEventListener('message', handler)
       }
-    }, [state])
+    }, [state, isLoadedUpdate])
 
     return (
       <div>
