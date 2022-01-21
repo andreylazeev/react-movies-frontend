@@ -100,8 +100,8 @@ export const MoviePlayer: FC<FilmProps> = memo(
             src={
               data.data.iframe_src +
               `?start_time=${
-                Math.trunc(state.userData?.movies?.find((el: Dictionary<any>) => el.filmId === filmId)
-                  .viewedLength * 60) || 0
+                state.userData?.movies?.find((el: Dictionary<any>) => el.filmId === filmId) ? Math.trunc(state.userData?.movies?.find((el: Dictionary<any>) => el.filmId === filmId)
+                  .viewedLength * 60) : 0
               }`
             }
           />
