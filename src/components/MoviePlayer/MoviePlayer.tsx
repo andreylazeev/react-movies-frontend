@@ -51,7 +51,7 @@ export const MoviePlayer: FC<FilmProps> = memo(
               coverPreview,
               filmLength: filmLength || 0,
               isFavorite: false,
-              viewedLength: current,
+              viewedLength: 0,
               nameEn,
               nameRu,
               nameOriginal,
