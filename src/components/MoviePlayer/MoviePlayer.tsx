@@ -69,8 +69,6 @@ export const MoviePlayer: FC<FilmProps> = memo(
 
     useEffect(() => {
       const handler = throttle(function (e: MessageEvent) {
-        console.log(111);
-        
         if (e.data.time && e.data.duration && isLoadedUpdate) {
           const candidate = state.userData.movies.find(
             (el: Dictionary<any>) => el.filmId === filmId
