@@ -65,7 +65,7 @@ export const MoviePlayer: FC<FilmProps> = memo(
           )
         }
       }
-    }, [JSON.stringify(state)])
+    }, [JSON.stringify(state), filmId])
 
     useEffect(() => {
       const handler = throttle(function (e: MessageEvent) {
