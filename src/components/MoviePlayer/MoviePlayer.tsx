@@ -82,7 +82,6 @@ export const MoviePlayer: FC<FilmProps> = memo(
       }, 10000)
       window.addEventListener('message', handler)
       return () => {
-        setIsLoadedUpdate(false)
         window.removeEventListener('message', handler)
       }
     }, [state, isLoadedUpdate])
