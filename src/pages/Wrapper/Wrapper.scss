@@ -1,5 +1,5 @@
 .Wrapper {
-  height: 100vh;
+  max-height: 100vh;
   display: grid;
   grid-template-columns: 2fr 14fr;
   @media screen and (max-width: 960px) {
