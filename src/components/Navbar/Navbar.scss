@@ -7,6 +7,10 @@
   grid-row-gap: 50px;
   grid-template-rows: auto auto 1fr;
   transition: all 0.3s ease-out;
+  
+  @media screen and (orientation: landscape) and (max-width: 960px) {
+    grid-row-gap: 10px;
+  }
 
   @media screen and (max-width: 960px) {
     padding: 40px 15px;
