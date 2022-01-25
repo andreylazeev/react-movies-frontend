@@ -7,7 +7,9 @@
     grid-template-columns: 1fr 15fr;
   }
   @media screen and (max-width: 600px) {
+    max-height: 100%;
     grid-template-columns: 1fr;
+    grid-template-rows: -webkit-fill-available;
   }
 
   &__Content {
