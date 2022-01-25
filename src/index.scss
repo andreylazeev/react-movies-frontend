@@ -18,3 +18,7 @@ body {
   background: linear-gradient(180deg, #22232A 0%, #1D1E23 52.08%, #18191D 100%);
   background-repeat: no-repeat;
 }
+
+body, html {
+  overflow: hidden;
+}
