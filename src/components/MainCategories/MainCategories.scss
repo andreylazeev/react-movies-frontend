@@ -24,6 +24,7 @@
 
   &__Category {
     cursor: pointer;
+    pointer-events: all;
     color: white;
     border: none;
     background: transparent;
