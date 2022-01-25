@@ -4,10 +4,7 @@
   pointer-events: none;
   z-index: 3;
   padding: 40px 45px;
-  position: sticky;
-  top: 0;
   @media screen and (max-width: 600px) {
-    top: 35px;
     display: block;
     z-index: 3;
   }
