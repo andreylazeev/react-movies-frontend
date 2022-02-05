@@ -27,7 +27,7 @@ export const MainSlide: FC<MovieProps> = ({
         <div
           className='MainSlide'
           style={{
-            backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.25) 100%),url(${response.items[0].imageUrl})`
+            backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.25) 100%),url(${response.items[0].imageUrl ? response.items[0].imageUrl : ''})`
           }}
         >
           <span className="MainSlide__Rating">
