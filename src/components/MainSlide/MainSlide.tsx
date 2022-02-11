@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { KP_HEADERS } from '../../constants'
 import { useFetch } from '../../hooks/fetch.hook'
@@ -27,7 +27,7 @@ export const MainSlide: FC<MovieProps> = ({
         <div
           className='MainSlide'
           style={{
-            backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.25) 100%),url(${response.items[0].imageUrl ? response.items[0].imageUrl : ''})`
+            backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.25) 100%),url(${response.items.length ? response.items[0].imageUrl : ''})`
           }}
         >
           <span className="MainSlide__Rating">
